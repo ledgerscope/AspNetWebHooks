@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Controllers\WebHookFiltersControllerTests.cs" />
     <Compile Include="Controllers\WebHookRegistrationsControllerTests.cs" />
+    <Compile Include="Extensions\ApiControllerExtensionsTests.cs" />
     <Compile Include="Extensions\DependencyScopeExtensionsTests.cs" />
     <Compile Include="Filters\ValidateModelAttributeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

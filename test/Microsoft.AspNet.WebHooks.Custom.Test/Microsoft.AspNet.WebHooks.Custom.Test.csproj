@@ -63,8 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\ApiControllerExtensionsTests.cs" />
-    <Compile Include="Extensions\DependencyScopeExtensionsTests.cs" />
     <Compile Include="Extensions\WebHookExtensionsTests.cs" />
     <Compile Include="Extensions\WebHookManagerExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

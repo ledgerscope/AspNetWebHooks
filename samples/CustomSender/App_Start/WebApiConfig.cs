@@ -17,9 +17,6 @@ namespace CustomSender
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            // Load basic support for sending WebHooks
-            config.InitializeCustomWebHooks();
-
             // Load Azure Storage or SQL for persisting subscriptions
             config.InitializeCustomWebHooksAzureStorage();
             // config.InitializeCustomWebHooksSqlStorage();

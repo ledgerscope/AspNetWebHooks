@@ -20,6 +20,7 @@ namespace Microsoft.AspNet.WebHooks.Services
     {
         private static IWebHookIdValidator _idValidator;
         private static IEnumerable<IWebHookRegistrar> _registrars;
+        private static IEnumerable<IWebHookFilterProvider> _filterProviders;
 
         /// <summary>
         /// Gets a default <see cref="IWebHookIdValidator"/> implementation which is used if none are registered with the 
@@ -68,12 +69,32 @@ namespace Microsoft.AspNet.WebHooks.Services
         }
 
         /// <summary>
+        /// Gets the set of <see cref="IWebHookFilterProvider"/> instances discovered by a default 
+        /// discovery mechanism which is used if none are registered with the Dependency Injection engine.
+        /// </summary>
+        /// <returns>An <see cref="IEnumerable{T}"/> containing the discovered instances.</returns>
+        public static IEnumerable<IWebHookFilterProvider> GetFilterProviders()
+        {
+            if (_filterProviders != null)
+            {
+                return _filterProviders;
+            }
+
+            IAssembliesResolver assembliesResolver = WebHooksConfig.Config.Services.GetAssembliesResolver();
+            ICollection<Assembly> assemblies = assembliesResolver.GetAssemblies();
+            IEnumerable<IWebHookFilterProvider> instances = TypeUtilities.GetInstances<IWebHookFilterProvider>(assemblies, t => TypeUtilities.IsType<IWebHookFilterProvider>(t));
+            Interlocked.CompareExchange(ref _filterProviders, instances, null);
+            return _filterProviders;
+        }
+
+        /// <summary>
         /// For testing purposes
         /// </summary>
         internal static void Reset()
         {
             _registrars = null;
             _idValidator = null;
+            _filterProviders = null;
         }
     }
 }

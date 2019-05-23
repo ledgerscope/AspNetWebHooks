@@ -9,6 +9,7 @@ using Microsoft.AspNet.WebHooks;
 using Microsoft.AspNet.WebHooks.Config;
 using Microsoft.AspNet.WebHooks.Diagnostics;
 using Microsoft.AspNet.WebHooks.Services;
+using Microsoft.Web.Mvc.Services;
 
 namespace System.Web.Mvc
 {
@@ -132,7 +133,7 @@ namespace System.Web.Mvc
             IEnumerable<IWebHookFilterProvider> filterProviders = services.GetServices<IWebHookFilterProvider>();
             if (filterProviders == null || !filterProviders.Any())
             {
-                filterProviders = CustomServices.GetFilterProviders();
+                filterProviders = CustomServicesMvc.GetFilterProviders();
             }
             return filterProviders;
         }

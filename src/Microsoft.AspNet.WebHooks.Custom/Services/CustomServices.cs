@@ -6,8 +6,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Threading;
-using System.Web.Http;
-using System.Web.Http.Dispatcher;
 using Microsoft.AspNet.WebHooks.Config;
 using Microsoft.AspNet.WebHooks.Diagnostics;
 using Microsoft.AspNet.WebHooks.Utilities;
@@ -22,7 +20,6 @@ namespace Microsoft.AspNet.WebHooks.Services
     /// </summary>
     public static class CustomServices
     {
-        private static IEnumerable<IWebHookFilterProvider> _filterProviders;
         private static IWebHookFilterManager _filterManager;
         private static IWebHookStore _store;
         private static IWebHookSender _sender;
@@ -82,25 +79,6 @@ namespace Microsoft.AspNet.WebHooks.Services
         public static void SetUser(IWebHookUser instance)
         {
             _user = instance;
-        }
-
-        /// <summary>
-        /// Gets the set of <see cref="IWebHookFilterProvider"/> instances discovered by a default 
-        /// discovery mechanism which is used if none are registered with the Dependency Injection engine.
-        /// </summary>
-        /// <returns>An <see cref="IEnumerable{T}"/> containing the discovered instances.</returns>
-        public static IEnumerable<IWebHookFilterProvider> GetFilterProviders()
-        {
-            if (_filterProviders != null)
-            {
-                return _filterProviders;
-            }
-
-            IAssembliesResolver assembliesResolver = WebHooksConfig.Config.Services.GetAssembliesResolver();
-            ICollection<Assembly> assemblies = assembliesResolver.GetAssemblies();
-            IEnumerable<IWebHookFilterProvider> instances = TypeUtilities.GetInstances<IWebHookFilterProvider>(assemblies, t => TypeUtilities.IsType<IWebHookFilterProvider>(t));
-            Interlocked.CompareExchange(ref _filterProviders, instances, null);
-            return _filterProviders;
         }
 
         /// <summary>
@@ -238,7 +216,6 @@ namespace Microsoft.AspNet.WebHooks.Services
         internal static void Reset()
         {
             _filterManager = null;
-            _filterProviders = null;
             _store = null;
             _sender = null;
             _manager = null;

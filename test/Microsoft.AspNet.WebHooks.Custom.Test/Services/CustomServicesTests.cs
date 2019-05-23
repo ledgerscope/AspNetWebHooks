@@ -70,17 +70,6 @@ namespace Microsoft.AspNet.WebHooks.Services
         }
 
         [Fact]
-        public void GetFilterProviders_ReturnsSingletonInstance()
-        {
-            // Act
-            IEnumerable<IWebHookFilterProvider> actual1 = CustomServices.GetFilterProviders();
-            IEnumerable<IWebHookFilterProvider> actual2 = CustomServices.GetFilterProviders();
-
-            // Assert
-            Assert.Same(actual1, actual2);
-        }
-
-        [Fact]
         public void GetFilterManager_ReturnsSingletonInstance()
         {
             // Arrange
