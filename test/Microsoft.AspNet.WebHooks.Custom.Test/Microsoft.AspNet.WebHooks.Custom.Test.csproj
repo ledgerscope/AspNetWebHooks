@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\UriExtensionsTests.cs" />
     <Compile Include="Extensions\WebHookExtensionsTests.cs" />
     <Compile Include="Extensions\WebHookManagerExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

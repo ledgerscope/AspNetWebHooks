@@ -18,7 +18,9 @@ namespace Microsoft.AspNet.WebHooks.Extensions
         {
             var queryParameters = new NameValueCollection();
 
-            string[] querySegments = uri.ToString().Split('&');
+            if (string.IsNullOrEmpty(uri.Query)) return queryParameters;
+
+            string[] querySegments = uri.Query.Remove(0,1).Split('&');
 
             foreach (string segment in querySegments)
             {
@@ -26,8 +28,8 @@ namespace Microsoft.AspNet.WebHooks.Extensions
 
                 if (parts.Length > 0)
                 {
-                    string key = parts[0].Trim(new char[] { '?', ' ' });
-                    string val = parts[1].Trim();
+                    string key = parts[0].Trim(new char[] { '?', ' ' }).ToLower();
+                    string val = parts.Length == 2 ? parts[1].Trim().ToLower() : string.Empty;
 
                     queryParameters.Add(key, WebUtility.UrlDecode(val));
                 }
