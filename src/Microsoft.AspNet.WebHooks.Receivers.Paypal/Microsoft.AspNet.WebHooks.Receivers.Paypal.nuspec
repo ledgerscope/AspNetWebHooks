@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>$symversion$</version>
+    <version>$version$</version>
     <title>Microsoft ASP.NET WebHooks Receiver for Paypal</title>
     <authors>Microsoft</authors>
     <owners>Microsoft, aspnet</owners>
