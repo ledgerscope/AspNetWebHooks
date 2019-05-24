@@ -11,9 +11,9 @@ using Xunit;
 namespace System.Web.Mvc
 {
     [Collection("ConfigCollection")]
-    public class CustomServicesTests
+    public class CustomMvcServicesTests
     {
-        public CustomServicesTests()
+        public CustomMvcServicesTests()
         {
             HttpConfiguration config = new HttpConfiguration();
             WebHooksConfig.Initialize(config);
@@ -23,8 +23,8 @@ namespace System.Web.Mvc
         public void GetFilterProviders_ReturnsSingletonInstance()
         {
             // Act
-            var actual1 = CustomServicesMvc.GetFilterProviders();
-            var actual2 = CustomServicesMvc.GetFilterProviders();
+            var actual1 = CustomMvcServices.GetFilterProviders();
+            var actual2 = CustomMvcServices.GetFilterProviders();
 
             // Assert
             Assert.Same(actual1, actual2);

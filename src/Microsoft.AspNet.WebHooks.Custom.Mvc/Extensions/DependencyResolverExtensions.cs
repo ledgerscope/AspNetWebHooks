@@ -133,7 +133,7 @@ namespace System.Web.Mvc
             IEnumerable<IWebHookFilterProvider> filterProviders = services.GetServices<IWebHookFilterProvider>();
             if (filterProviders == null || !filterProviders.Any())
             {
-                filterProviders = CustomServicesMvc.GetFilterProviders();
+                filterProviders = CustomMvcServices.GetFilterProviders();
             }
             return filterProviders;
         }

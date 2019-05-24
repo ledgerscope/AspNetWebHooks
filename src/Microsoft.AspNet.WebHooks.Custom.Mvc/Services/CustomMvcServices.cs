@@ -18,7 +18,7 @@ namespace Microsoft.Web.Mvc.Services
     /// If alternative implementations are provided by a Dependency Injection engine then
     /// those instances are used instead.
     /// </summary>
-    public static class CustomServicesMvc
+    public static class CustomMvcServices
     {
         private static IEnumerable<IWebHookFilterProvider> _filterProviders;
 
