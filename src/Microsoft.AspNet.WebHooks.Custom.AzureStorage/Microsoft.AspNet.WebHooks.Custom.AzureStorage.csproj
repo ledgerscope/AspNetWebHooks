@@ -15,7 +15,7 @@
     <CodeAnalysisAdditionalOptions>/assemblyCompareMode:StrongNameIgnoringVersion</CodeAnalysisAdditionalOptions>
     <CodeAnalysisRuleSet>..\..\FxCop.ruleset</CodeAnalysisRuleSet>
     <DefineConstants>$(DefineConstants);ASPNETWEBHOOKS</DefineConstants>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.AspNetCore.Cryptography.Internal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">

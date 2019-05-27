@@ -17,7 +17,7 @@
     <CodeAnalysisAdditionalOptions>/assemblyCompareMode:StrongNameIgnoringVersion</CodeAnalysisAdditionalOptions>
     <CodeAnalysisRuleSet>..\..\FxCop.ruleset</CodeAnalysisRuleSet>
     <DefineConstants>$(DefineConstants);ASPNETWEBHOOKS</DefineConstants>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <NuGetPackageImportStamp>84adb0a6</NuGetPackageImportStamp>
   </PropertyGroup>
   <ItemGroup>
