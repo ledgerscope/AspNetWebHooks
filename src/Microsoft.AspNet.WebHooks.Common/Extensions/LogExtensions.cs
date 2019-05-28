@@ -3,7 +3,7 @@
 
 using System;
 using System.ComponentModel;
-using System.Web.Http.Tracing;
+using System.Diagnostics;
 using Microsoft.AspNet.WebHooks.Diagnostics;
 
 namespace Microsoft.AspNet.WebHooks
@@ -47,7 +47,7 @@ namespace Microsoft.AspNet.WebHooks
         {
             if (log != null)
             {
-                log.Log(TraceLevel.Warn, message, ex: null);
+                log.Log(TraceLevel.Warning, message, ex: null);
             }
         }
 
@@ -61,19 +61,6 @@ namespace Microsoft.AspNet.WebHooks
             if (log != null)
             {
                 log.Log(TraceLevel.Info, message, ex: null);
-            }
-        }
-
-        /// <summary>
-        /// Logs a debug message.
-        /// </summary>
-        /// <param name="log">The <see cref="ILogger"/> implementation to log with.</param>
-        /// <param name="message">The message to log.</param>
-        public static void Debug(this ILogger log, string message)
-        {
-            if (log != null)
-            {
-                log.Log(TraceLevel.Debug, message, ex: null);
             }
         }
     }

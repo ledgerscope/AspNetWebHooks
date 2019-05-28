@@ -3,7 +3,6 @@
 
 using System;
 using System.Diagnostics;
-using WT = System.Web.Http.Tracing;
 
 namespace Microsoft.AspNet.WebHooks.Diagnostics
 {
@@ -13,7 +12,7 @@ namespace Microsoft.AspNet.WebHooks.Diagnostics
     public class TraceLogger : ILogger
     {
         /// <inheritdoc />
-        public void Log(WT.TraceLevel level, string message, Exception ex)
+        public void Log(TraceLevel level, string message, Exception ex)
         {
             if (message == null)
             {
@@ -22,24 +21,19 @@ namespace Microsoft.AspNet.WebHooks.Diagnostics
 
             switch (level)
             {
-                case WT.TraceLevel.Fatal:
-                case WT.TraceLevel.Error:
+                case TraceLevel.Error:
                     Trace.TraceError(message);
                     break;
 
-                case WT.TraceLevel.Warn:
+                case TraceLevel.Warning:
                     Trace.TraceWarning(message);
                     break;
 
-                case WT.TraceLevel.Info:
+                case TraceLevel.Info:
                     Trace.TraceInformation(message);
                     break;
 
-                case WT.TraceLevel.Debug:
-                    Trace.WriteLine(message);
-                    break;
-
-                case WT.TraceLevel.Off:
+                case TraceLevel.Off:
                     break;
             }
         }
