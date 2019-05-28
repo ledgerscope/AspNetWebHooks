@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Web.Http.Tracing;
+using System.Diagnostics;
 using log4net;
 using Microsoft.AspNet.WebHooks.Diagnostics;
 
@@ -13,24 +13,16 @@ namespace GenericReceivers.Dependencies
         {
             switch (level)
             {
-                case TraceLevel.Fatal:
-                    Logger.Fatal(message, ex);
-                    break;
-
                 case TraceLevel.Error:
                     Logger.Error(message, ex);
                     break;
 
-                case TraceLevel.Warn:
+                case TraceLevel.Warning:
                     Logger.Warn(message, ex);
                     break;
 
                 case TraceLevel.Info:
                     Logger.Info(message, ex);
-                    break;
-
-                case TraceLevel.Debug:
-                    Logger.Debug(message, ex);
                     break;
             }
         }
