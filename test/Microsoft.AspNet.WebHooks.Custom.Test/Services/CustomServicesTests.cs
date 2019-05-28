@@ -13,12 +13,6 @@ namespace Microsoft.AspNet.WebHooks.Services
     [Collection("ConfigCollection")]
     public class CustomServicesTests
     {
-        public CustomServicesTests()
-        {
-            HttpConfiguration config = new HttpConfiguration();
-            WebHooksConfig.Initialize(config);
-        }
-
         [Fact]
         public void GetStore_ReturnsSingleInstance()
         {

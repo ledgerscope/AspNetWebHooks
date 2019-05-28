@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
-using System.Web.Http.Tracing;
+using System.Diagnostics;
 using Moq;
 using Xunit;
 
@@ -32,7 +32,7 @@ namespace Microsoft.AspNet.WebHooks.Diagnostics
             _loggerMock.Object.Warn("message");
 
             // Assert
-            _loggerMock.Verify(l => l.Log(TraceLevel.Warn, "message", null));
+            _loggerMock.Verify(l => l.Log(TraceLevel.Warning, "message", null));
         }
 
         [Fact]
@@ -43,16 +43,6 @@ namespace Microsoft.AspNet.WebHooks.Diagnostics
 
             // Assert
             _loggerMock.Verify(l => l.Log(TraceLevel.Info, "message", null));
-        }
-
-        [Fact]
-        public void Debug_Logs()
-        {
-            // Act
-            _loggerMock.Object.Debug("message");
-
-            // Assert
-            _loggerMock.Verify(l => l.Log(TraceLevel.Debug, "message", null));
         }
     }
 }

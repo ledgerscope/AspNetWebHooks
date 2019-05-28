@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.Web.Http;
 using Microsoft.AspNet.WebHooks.Config;
+using Microsoft.AspNet.WebHooks.Custom.Api.Config;
 using Moq;
 using Xunit;
 
@@ -15,7 +16,7 @@ namespace Microsoft.AspNet.WebHooks.Services
         public CustomApiServicesTests()
         {
             HttpConfiguration config = new HttpConfiguration();
-            WebHooksConfig.Initialize(config);
+            WebHooksConfigApi.Initialize(config);
         }
 
         [Fact]

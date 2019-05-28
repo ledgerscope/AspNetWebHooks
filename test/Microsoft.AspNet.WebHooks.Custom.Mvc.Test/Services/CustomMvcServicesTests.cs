@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Web.Http;
 using Microsoft.AspNet.WebHooks;
 using Microsoft.AspNet.WebHooks.Config;
+using Microsoft.AspNet.WebHooks.Custom.Api.Config;
 using Microsoft.Web.Mvc.Services;
 using Xunit;
 
@@ -16,7 +17,7 @@ namespace System.Web.Mvc
         public CustomMvcServicesTests()
         {
             HttpConfiguration config = new HttpConfiguration();
-            WebHooksConfig.Initialize(config);
+            WebHooksConfigMvc.Initialize(config);
         }
 
         [Fact]

@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNet.WebHooks;
 using Microsoft.AspNet.WebHooks.Config;
+using Microsoft.AspNet.WebHooks.Custom.Api.Config;
 using Microsoft.AspNet.WebHooks.Diagnostics;
 using Microsoft.AspNet.WebHooks.Services;
 using Moq;
@@ -117,7 +118,7 @@ namespace System.Web.Mvc
         public void GetFilterManager_ReturnsDefaultInstance_IfNoneRegistered()
         {
             // Arrange
-            WebHooksConfig.Initialize(_config);
+            WebHooksConfigMvc.Initialize(_config);
 
             // Act
             IWebHookFilterManager actual = _resolverMock.Object.GetFilterManager();
@@ -256,7 +257,7 @@ namespace System.Web.Mvc
         public void GetFilterProviders_ReturnsSameInstances_IfNoneRegistered()
         {
             // Arrange
-            WebHooksConfig.Initialize(_config);
+            WebHooksConfigMvc.Initialize(_config);
 
             // Act
             IEnumerable<IWebHookFilterProvider> actual1 = _resolverMock.Object.GetFilterProviders();
