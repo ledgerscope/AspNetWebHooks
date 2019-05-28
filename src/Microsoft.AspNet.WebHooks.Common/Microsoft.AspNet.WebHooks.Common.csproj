@@ -53,7 +53,6 @@
     <Compile Include="Config\SettingsDictionary.cs" />
     <Compile Include="Diagnostics\ILogger.cs" />
     <Compile Include="Diagnostics\TraceLogger.cs" />
-    <Compile Include="Extensions\DependencyScopeExtensions.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Extensions\LogExtensions.cs" />
     <Compile Include="Extensions\HttpContentExtensions.cs" />
@@ -70,14 +69,13 @@
     <Compile Include="Services\CommonServices.cs" />
     <Compile Include="Utilities\Hasher.cs" />
     <Compile Include="Utilities\TypeUtilities.cs" />
-    <Compile Include="Config\WebHooksConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\CommonResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CommonResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>

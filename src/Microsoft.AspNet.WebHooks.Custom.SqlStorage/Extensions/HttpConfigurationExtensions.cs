@@ -72,8 +72,6 @@ namespace System.Web.Http
                 throw new ArgumentNullException(nameof(config));
             }
 
-            WebHooksConfig.Initialize(config);
-
             ILogger logger = config.DependencyResolver.GetLogger();
             SettingsDictionary settings = config.DependencyResolver.GetSettings();
 

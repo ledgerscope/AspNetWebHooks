@@ -141,6 +141,7 @@
     <Compile Include="..\Common\DataSecurity.cs">
       <Link>Common\DataSecurity.cs</Link>
     </Compile>
+    <Compile Include="Extensions\DependencyScopeExtensions.cs" />
     <Compile Include="Extensions\HttpConfigurationExtensions.cs" />
     <Compile Include="Extensions\TableResultExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

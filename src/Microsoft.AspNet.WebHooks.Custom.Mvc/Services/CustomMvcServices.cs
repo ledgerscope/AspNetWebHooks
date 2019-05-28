@@ -8,6 +8,7 @@ using System.Web.Http;
 using System.Web.Http.Dispatcher;
 using Microsoft.AspNet.WebHooks;
 using Microsoft.AspNet.WebHooks.Config;
+using Microsoft.AspNet.WebHooks.Custom.Api.Config;
 using Microsoft.AspNet.WebHooks.Utilities;
 
 namespace Microsoft.Web.Mvc.Services
@@ -34,7 +35,7 @@ namespace Microsoft.Web.Mvc.Services
                 return _filterProviders;
             }
 
-            IAssembliesResolver assembliesResolver = WebHooksConfig.Config.Services.GetAssembliesResolver();
+            IAssembliesResolver assembliesResolver = WebHooksConfigMvc.Config.Services.GetAssembliesResolver();
             ICollection<Assembly> assemblies = assembliesResolver.GetAssemblies();
             IEnumerable<IWebHookFilterProvider> instances = TypeUtilities.GetInstances<IWebHookFilterProvider>(assemblies, t => TypeUtilities.IsType<IWebHookFilterProvider>(t));
             Interlocked.CompareExchange(ref _filterProviders, instances, null);

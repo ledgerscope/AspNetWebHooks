@@ -3,6 +3,7 @@
 
 using System.ComponentModel;
 using Microsoft.AspNet.WebHooks.Config;
+using Microsoft.AspNet.WebHooks.Custom.Api.Config;
 
 namespace System.Web.Http
 {
@@ -19,7 +20,7 @@ namespace System.Web.Http
         /// <param name="config">The current <see cref="HttpConfiguration"/>config.</param>
         public static void InitializeCustomWebHooksApis(this HttpConfiguration config)
         {
-            WebHooksConfig.Initialize(config);
+            WebHooksConfigApi.Initialize(config);
         }
     }
 }

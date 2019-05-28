@@ -7,6 +7,7 @@ using System.Threading;
 using System.Web.Http;
 using System.Web.Http.Dispatcher;
 using Microsoft.AspNet.WebHooks.Config;
+using Microsoft.AspNet.WebHooks.Custom.Api.Config;
 using Microsoft.AspNet.WebHooks.Utilities;
 
 namespace Microsoft.AspNet.WebHooks.Services
@@ -61,7 +62,7 @@ namespace Microsoft.AspNet.WebHooks.Services
                 return _registrars;
             }
 
-            IAssembliesResolver assembliesResolver = WebHooksConfig.Config.Services.GetAssembliesResolver();
+            IAssembliesResolver assembliesResolver = WebHooksConfigApi.Config.Services.GetAssembliesResolver();
             ICollection<Assembly> assemblies = assembliesResolver.GetAssemblies();
             IEnumerable<IWebHookRegistrar> instances = TypeUtilities.GetInstances<IWebHookRegistrar>(assemblies, t => TypeUtilities.IsType<IWebHookRegistrar>(t));
             Interlocked.CompareExchange(ref _registrars, instances, null);
@@ -80,7 +81,7 @@ namespace Microsoft.AspNet.WebHooks.Services
                 return _filterProviders;
             }
 
-            IAssembliesResolver assembliesResolver = WebHooksConfig.Config.Services.GetAssembliesResolver();
+            IAssembliesResolver assembliesResolver = WebHooksConfigApi.Config.Services.GetAssembliesResolver();
             ICollection<Assembly> assemblies = assembliesResolver.GetAssemblies();
             IEnumerable<IWebHookFilterProvider> instances = TypeUtilities.GetInstances<IWebHookFilterProvider>(assemblies, t => TypeUtilities.IsType<IWebHookFilterProvider>(t));
             Interlocked.CompareExchange(ref _filterProviders, instances, null);
