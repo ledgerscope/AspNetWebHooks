@@ -16,6 +16,8 @@
     <DefineConstants>$(DefineConstants);ASPNETWEBHOOKS</DefineConstants>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>

@@ -12,7 +12,7 @@
     <RootNamespace>Microsoft.AspNet.WebHooks</RootNamespace>
     <AssemblyName>Microsoft.AspNet.WebHooks.Custom.AzureStorage.Test</AssemblyName>
     <OutputPath>..\..\bin\Test\$(Configuration)\</OutputPath>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <RunCodeAnalysis>$(CodeAnalysis)</RunCodeAnalysis>
     <CodeAnalysisAdditionalOptions>/assemblyCompareMode:StrongNameIgnoringVersion</CodeAnalysisAdditionalOptions>
     <CodeAnalysisRuleSet>..\..\FxCopTest.ruleset</CodeAnalysisRuleSet>
@@ -20,6 +20,7 @@
     <SignAssembly>false</SignAssembly>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Data.Edm, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
