@@ -11,7 +11,6 @@ using Microsoft.AspNet.WebHooks.Diagnostics;
 using Microsoft.AspNet.WebHooks.Properties;
 using Microsoft.AspNet.WebHooks.Services;
 using Microsoft.AspNet.WebHooks.Storage;
-using Microsoft.AspNetCore.DataProtection;
 using Microsoft.WindowsAzure.Storage.Table;
 using Newtonsoft.Json;
 
@@ -30,7 +29,6 @@ namespace Microsoft.AspNet.WebHooks
 
         private readonly JsonSerializerSettings _serializerSettings = new JsonSerializerSettings() { Formatting = Formatting.None };
         private readonly IStorageManager _manager;
-        private readonly IDataProtector _protector;
         private readonly ILogger _logger;
         private readonly string _connectionString;
 
@@ -60,52 +58,16 @@ namespace Microsoft.AspNet.WebHooks
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AzureWebHookStore"/> class with the given <paramref name="manager"/>,
-        /// <paramref name="settings"/>, <paramref name="protector"/>, and <paramref name="logger"/>.
-        /// Using this constructor, the data will be encrypted using the provided <paramref name="protector"/>.
-        /// </summary>
-        public AzureWebHookStore(IStorageManager manager, SettingsDictionary settings, IDataProtector protector, ILogger logger)
-            : this(manager, settings, logger)
-        {
-            if (protector == null)
-            {
-                throw new ArgumentNullException(nameof(protector));
-            }
-            _protector = protector;
-        }
-
-        /// <summary>
-        /// Provides a static method for creating a standalone <see cref="AzureWebHookStore"/> instance which will
-        /// encrypt the data to be stored using <see cref="IDataProtector"/>.
+        /// Provides a static method for creating a standalone <see cref="AzureWebHookStore"/> instance.
         /// </summary>
         /// <param name="logger">The <see cref="ILogger"/> instance to use.</param>
         /// <returns>An initialized <see cref="AzureWebHookStore"/> instance.</returns>
         public static IWebHookStore CreateStore(ILogger logger)
         {
-            return CreateStore(logger, encryptData: true);
-        }
-
-        /// <summary>
-        /// Provides a static method for creating a standalone <see cref="AzureWebHookStore"/> instance.
-        /// </summary>
-        /// <param name="logger">The <see cref="ILogger"/> instance to use.</param>
-        /// <param name="encryptData">Indicates whether the data should be encrypted using <see cref="IDataProtector"/> while persisted.</param>
-        /// <returns>An initialized <see cref="AzureWebHookStore"/> instance.</returns>
-        public static IWebHookStore CreateStore(ILogger logger, bool encryptData)
-        {
             var settings = CommonServices.GetSettings();
-            IWebHookStore store;
             var storageManager = StorageManager.GetInstance(logger);
-            if (encryptData)
-            {
-                var protector = DataSecurity.GetDataProtector();
-                store = new AzureWebHookStore(storageManager, settings, protector, logger);
-            }
-            else
-            {
-                store = new AzureWebHookStore(storageManager, settings, logger);
-            }
-            return store;
+ 
+            return new AzureWebHookStore(storageManager, settings, logger);
         }
 
         /// <inheritdoc />
@@ -350,10 +312,9 @@ namespace Microsoft.AspNet.WebHooks
 
             try
             {
-                var encryptedContent = property.StringValue;
-                if (encryptedContent != null)
+                var content = property.StringValue;
+                if (content != null)
                 {
-                    var content = _protector != null ? _protector.Unprotect(encryptedContent) : encryptedContent;
                     var webHook = JsonConvert.DeserializeObject<WebHook>(content, _serializerSettings);
                     return webHook;
                 }
@@ -375,8 +336,7 @@ namespace Microsoft.AspNet.WebHooks
 
             // Set data column with encrypted serialization of WebHook
             var content = JsonConvert.SerializeObject(webHook, _serializerSettings);
-            var encryptedContent = _protector != null ? _protector.Protect(content) : content;
-            var property = EntityProperty.GeneratePropertyForString(encryptedContent);
+            var property = EntityProperty.GeneratePropertyForString(content);
             entity.Properties.Add(WebHookDataColumn, property);
 
             return entity;
