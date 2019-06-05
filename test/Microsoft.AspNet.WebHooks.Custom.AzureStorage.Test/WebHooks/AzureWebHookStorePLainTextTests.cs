@@ -4,6 +4,7 @@
 using System.Web.Http;
 using Microsoft.AspNet.WebHooks.Diagnostics;
 using Microsoft.AspNet.WebHooks.Services;
+using Microsoft.AspNet.WebHooks.Storage;
 using Moq;
 using Xunit;
 
@@ -24,7 +25,7 @@ namespace Microsoft.AspNet.WebHooks
             ILogger logger = new Mock<ILogger>().Object;
 
             // Act
-            IWebHookStore actual = AzureWebHookStore.CreateStore(logger, encryptData: false);
+            IWebHookStore actual = AzureWebHookStore.CreateStore(logger);
 
             // Assert
             Assert.IsType<AzureWebHookStore>(actual);
@@ -32,9 +33,8 @@ namespace Microsoft.AspNet.WebHooks
 
         private static IWebHookStore CreateStore()
         {
-            HttpConfiguration config = new HttpConfiguration();
-            config.InitializeCustomWebHooksAzureStorage(encryptData: false);
-            IWebHookStore store = CustomServices.GetStore();
+            var store = new AzureWebHookStore(StorageManager.GetInstance(new TraceLogger()), CommonServices.GetSettings(), new TraceLogger());
+
             Assert.IsType<AzureWebHookStore>(store);
             return store;
         }

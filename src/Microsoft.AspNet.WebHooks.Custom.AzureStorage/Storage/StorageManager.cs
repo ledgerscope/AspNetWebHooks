@@ -479,7 +479,8 @@ namespace Microsoft.AspNet.WebHooks.Storage
             return ex is StorageException se && se.RequestInformation != null ? se.RequestInformation.HttpStatusCode : 500;
         }
 
-        internal static IStorageManager GetInstance(ILogger logger)
+        /// <inheritdoc />
+        public static IStorageManager GetInstance(ILogger logger)
         {
             if (_storageManager != null)
             {
