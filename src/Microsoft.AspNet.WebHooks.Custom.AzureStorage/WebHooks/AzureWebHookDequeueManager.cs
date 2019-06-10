@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.WebHooks.Diagnostics;
 using Microsoft.AspNet.WebHooks.Properties;
 using Microsoft.AspNet.WebHooks.Storage;
+using Microsoft.AspNet.WebHooks.WebHooks;
 using Microsoft.WindowsAzure.Storage.Queue;
 using Newtonsoft.Json;
 
@@ -22,7 +23,7 @@ namespace Microsoft.AspNet.WebHooks
     /// WebHook to the recipients. If the delivery success then the message is removed from the queue, otherwise it remains so that another
     /// attempt can be made. After a given number of attempts the message is discarded without being delivered.
     /// </summary>
-    public class AzureWebHookDequeueManager : IDisposable
+    public class AzureWebHookDequeueManager : IDequeueManager
     {
         internal const string QueueMessageKey = "MS_QueueMessage";
         internal const int MaxDequeuedMessages = 32;
