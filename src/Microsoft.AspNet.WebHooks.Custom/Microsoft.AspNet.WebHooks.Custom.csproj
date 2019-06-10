@@ -51,6 +51,7 @@
       <DependentUpon>CustomResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\CustomServices.cs" />
+    <Compile Include="WebHooks\IDequeueManager.cs" />
     <Compile Include="WebHooks\IWebHookRegistrationsManager.cs" />
     <Compile Include="WebHooks\WebHookRegistrationsManager.cs" />
     <Compile Include="WebHooks\WebHookSender.cs" />
