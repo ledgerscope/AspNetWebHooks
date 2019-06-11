@@ -27,7 +27,7 @@ namespace Microsoft.AspNet.WebHooks
             // Assert
             Assembly expected = typeof(WebHookReceiversController).Assembly;
             IEnumerable<Assembly> found = actual.Where(item => item == expected);
-            Assert.Equal(1, found.Count());
+            Assert.Single(found);
         }
 
         [Fact]

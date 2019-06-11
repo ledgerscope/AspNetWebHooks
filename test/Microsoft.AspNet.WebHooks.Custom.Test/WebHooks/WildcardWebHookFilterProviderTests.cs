@@ -24,7 +24,7 @@ namespace Microsoft.AspNet.WebHooks
             Collection<WebHookFilter> actual = await _provider.GetFiltersAsync();
 
             // Assert
-            Assert.Equal(1, actual.Count);
+            Assert.Single(actual);
             Assert.Equal(WildcardWebHookFilterProvider.Name, actual.Single().Name);
         }
     }

@@ -53,7 +53,7 @@ namespace Microsoft.AspNet.WebHooks.Config
             SettingsDictionary actual = providerMock.Object.GetSettings();
 
             // Assert
-            Assert.Equal(actual["SampleKey"], "你好世界");
+            Assert.Equal("你好世界", actual["SampleKey"]);
         }
 
         private static Mock<DefaultSettingsProvider> GetProviderMock()
