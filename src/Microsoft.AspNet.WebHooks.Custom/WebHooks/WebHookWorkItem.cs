@@ -34,7 +34,7 @@ namespace Microsoft.AspNet.WebHooks
         }
 
         /// <summary>
-        /// Gets or sets a unique ID which is used to identify this firing of a <see cref="WebHooks.WebHook"/>.
+        /// Gets or sets a unique ID which is used to identify this firing of a <see cref="Microsoft.AspNet.WebHooks.WebHook"/>.
         /// </summary>
         public string Id
         {
@@ -53,7 +53,7 @@ namespace Microsoft.AspNet.WebHooks
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="WebHooks.WebHook"/> to fire.
+        /// Gets or sets the <see cref="Microsoft.AspNet.WebHooks.WebHook"/> to fire.
         /// </summary>
         public WebHook WebHook { get; set; }
 
